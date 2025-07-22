@@ -1,1 +1,236 @@
+/* estilos.css - Malla Interactiva Medicina USMP */
 
+/* Estilos Base */
+:root {
+  --color-primario: #0066cc;
+  --color-secundario: #004080;
+  --color-aprobado: #2e8b57;
+  --color-bloqueado: #999;
+  --fondo-primario: #f5f9ff;
+  --fondo-ciclo: #e6f2ff;
+  --fondo-curso: #d4e3ff;
+  --fondo-curso-hover: #c1d7ff;
+  --fondo-aprobado: #d1e7dd;
+  --sombra: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Reset y Estructura Principal */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: var(--fondo-primario);
+  color: #333;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+h1 {
+  color: var(--color-primario);
+  text-align: center;
+  margin: 0 auto 30px;
+  padding: 0 20px 15px;
+  border-bottom: 2px solid var(--color-primario);
+  max-width: 90%;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+}
+
+/* Contenedor de la Malla */
+.malla-container {
+  display: flex;
+  gap: 15px;
+  padding: 20px 10px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  min-height: calc(100vh - 100px);
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primario) #f1f1f1;
+}
+
+/* Estilos de Cada Ciclo */
+.ciclo {
+  background-color: var(--fondo-ciclo);
+  border-radius: 12px;
+  padding: 15px;
+  min-width: 280px;
+  max-width: 320px;
+  box-shadow: var(--sombra);
+  scroll-snap-align: start;
+  height: fit-content;
+  transition: transform 0.3s ease;
+}
+
+.ciclo:hover {
+  transform: translateY(-5px);
+}
+
+.ciclo h2 {
+  color: var(--color-secundario);
+  text-align: center;
+  margin: 0 0 15px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(0, 102, 204, 0.3);
+  position: sticky;
+  left: 0;
+  font-size: 1.3rem;
+  background-color: var(--fondo-ciclo);
+}
+
+/* Estilos de los Cursos */
+.curso {
+  background-color: var(--fondo-curso);
+  margin: 10px 0;
+  padding: 12px;
+  border-radius: 8px;
+  border-left: 4px solid var(--color-primario);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.curso::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+}
+
+.curso:hover {
+  background-color: var(--fondo-curso-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.curso:hover::before {
+  animation: shine 1.5s infinite;
+}
+
+/* Estados de los Cursos */
+.curso.aprobado {
+  background-color: var(--fondo-aprobado);
+  border-left-color: var(--color-aprobado);
+  color: var(--color-aprobado);
+  text-decoration: line-through;
+}
+
+.curso.bloqueado {
+  background-color: #f0f0f0;
+  color: var(--color-bloqueado);
+  border-left-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.curso.bloqueado:hover {
+  background-color: #f0f0f0;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Scrollbar Personalizada */
+::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primario);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #004d99;
+}
+
+/* Animaciones */
+@keyframes shine {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Efecto de Carga */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.loading .curso {
+  animation: pulse 1.5s infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .malla-container {
+    gap: 10px;
+    padding: 15px 5px;
+  }
+
+  .ciclo {
+    min-width: 260px;
+    padding: 12px;
+  }
+
+  .curso {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 15px 10px;
+  }
+
+  .ciclo {
+    min-width: 240px;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+}
+
+/* Modo Oscuro Opcional */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primario: #4da6ff;
+    --color-secundario: #7fbfff;
+    --fondo-primario: #121212;
+    --fondo-ciclo: #1e1e1e;
+    --fondo-curso: #2d2d2d;
+    --fondo-curso-hover: #3a3a3a;
+    --fondo-aprobado: #1e3a1e;
+  }
+
+  body {
+    color: #e0e0e0;
+  }
+
+  .curso.bloqueado {
+    background-color: #2d2d2d;
+    color: #777;
+  }
+}
