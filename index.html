@@ -4,73 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Malla Interactiva - Medicina Humana USMP</title>
-    <meta name="description" content="Malla curricular interactiva de la carrera de Medicina Humana de la USMP">
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Estilos de carga inicial */
-        .loading {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-size: 1.5rem;
-            color: #0066cc;
-        }
-    </style>
 </head>
 <body>
-    <div id="loading" class="loading">
-        <p>Cargando malla curricular...</p>
-    </div>
-
-    <div id="app" style="display: none;">
-        <div class="container">
-            <header>
-                <div class="header-content">
-                    <img src="https://www.usmp.edu.pe/images/logo.png" alt="Logo USMP" class="logo">
-                    <div>
-                        <h1>Malla Interactiva - Medicina Humana USMP</h1>
-                        <p class="subtitle">Plan de Estudios 2025</p>
-                    </div>
-                </div>
-                
-                <div class="controls">
-                    <div id="creditos-counter">0/320 créditos</div>
-                    <div class="progress-container">
-                        <div id="progress-bar" class="progress-bar"></div>
-                    </div>
-                    <button id="btn-reset" class="btn-reset">Reiniciar Progreso</button>
-                </div>
-            </header>
-            
-            <main>
-                <div class="instructions">
-                    <p>Haz clic en los cursos para marcarlos como aprobados. Los cursos se desbloquean al completar sus prerrequisitos.</p>
-                </div>
-                
-                <div class="malla-container" id="malla">
-                    <!-- La malla se renderizará dinámicamente con JavaScript -->
-                </div>
-            </main>
-        </div>
-
-        <footer>
-            <div class="footer-content">
-                <p>© 2024 Facultad de Medicina Humana - Universidad San Martín de Porres</p>
-                <p class="version">Versión 2.0</p>
+    <div class="container">
+        <header>
+            <h1>Malla Interactiva - Medicina Humana USMP</h1>
+            <div class="controls">
+                <div id="creditos-counter">0/320 créditos</div>
+                <button id="btn-reset">Reiniciar Progreso</button>
             </div>
-        </footer>
+        </header>
+        
+        <main>
+            <div class="malla-container" id="malla">
+                <!-- La malla se renderiza con JavaScript -->
+            </div>
+        </main>
     </div>
+
+    <footer>
+        <p>© 2024 Universidad San Martín de Porres - Facultad de Medicina</p>
+    </footer>
 
     <script src="script.js"></script>
-    <script>
-        // Mostrar la aplicación cuando esté cargada
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('app').style.display = 'block';
-            }, 500);
-        });
-    </script>
 </body>
 </html>
